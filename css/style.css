@@ -96,6 +96,10 @@ body {
   overflow-y: scroll;
 }
 
+.animais-lista li {
+  cursor: pointer;
+}
+
 .animais-lista::-webkit-scrollbar {
   width: 18px;
 }
@@ -207,7 +211,7 @@ body {
   }
 }
 
-.animais-descricao section {
+.suporte .animais-descricao section {
   display: none;
 }
 

@@ -233,3 +233,20 @@ body {
     transform: translate3d(0, 0, 0);
   }
 }
+
+.suporte .faq-lista dd {
+  display: none;
+}
+
+.faq-lista dt::after {
+  content: '⬎';
+  margin-left: 10px;
+}
+
+.faq-lista dt.ativo::after {
+  content: '⬏';
+}
+
+.faq-lista dd.ativo {
+  display: block;
+}

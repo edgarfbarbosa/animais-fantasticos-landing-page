@@ -26,3 +26,17 @@ function initTabNav() {
 }
 
 initTabNav()
+
+const accordionList = document.querySelectorAll('.faq-lista dt')
+
+function activeAccordion() {
+  // e.preventDefault()
+  // e.currentTarget.nextElementSibling.classList.add('ativo')
+  // Ao invés de utilizar event, eu posso utilizar this que fará referência ao item já selecionado
+  this.classList.add('ativo')
+  this.nextElementSibling.classList.add('ativo')
+}
+
+accordionList.forEach((item) => {
+  item.addEventListener('click', activeAccordion)
+})

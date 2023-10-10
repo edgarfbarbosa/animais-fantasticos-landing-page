@@ -34,8 +34,8 @@ function initAccordion() {
     accordionList[0].classList.add('ativo')
     accordionList[0].nextElementSibling.classList.add('ativo')
     /**
-     * A função activeAccordion adiciona ou remove a classe ativo dos elementos selecionados na variável accordionList.
-     */
+    * A função activeAccordion adiciona ou remove a classe ativo dos elementos selecionados na variável accordionList.
+    */
     function activeAccordion() {
       // e.preventDefault()
       // e.currentTarget.nextElementSibling.classList.add('ativo')
@@ -51,3 +51,39 @@ function initAccordion() {
 }
 
 initAccordion()
+
+function initScrollSuave() {
+  const linksInternos = document.querySelectorAll('.menu a[href^="#"]')
+  /**
+   * A função scrollToSection rola suavemente a página até a seção específica selecionada pelo usuário.
+   * @param {Event} e Evento de clique para seleção do link.
+   */
+  function scrollToSection(e) {
+    e.preventDefault()
+    
+    const href = e.currentTarget.getAttribute('href')
+    const section = document.querySelector(href)
+    
+    // Utilizando o método scrollIntoView():
+    section.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    })
+    
+    // Utilizando o método scrollTo():
+    // const sectionOffSetTop = section.offsetTop
+    
+    // scrollTo(0, sectionOffSetTop)
+    
+    // scrollTo({
+    //   top: sectionOffSetTop,
+    //   behavior: 'smooth'
+    // })
+  }
+  
+  linksInternos.forEach((link) => {
+    link.addEventListener('click', scrollToSection)
+  })
+}
+
+initScrollSuave()

@@ -262,3 +262,15 @@ body {
     max-height: 200px;
   }
 }
+
+.suporte .js-scroll {
+  opacity: 0;
+  /* O ideal é utilizar o transition no elemento ainda não ativo */
+  transition: .3s;
+  transform: translate3d(-30px, 0, 0);
+}
+
+.suporte .js-scroll.ativo {
+  opacity: 1;
+  transform: translate3d(0px, 0, 0);
+}

@@ -55,9 +55,9 @@ initAccordion()
 function initScrollSuave() {
   const linksInternos = document.querySelectorAll('.menu a[href^="#"]')
   /**
-   * A função scrollToSection rola suavemente a página até a seção específica selecionada pelo usuário.
-   * @param {Event} e Evento de clique para seleção do link.
-   */
+  * A função scrollToSection rola suavemente a página até a seção específica selecionada pelo usuário.
+  * @param {Event} e Evento de clique para seleção do link.
+  */
   function scrollToSection(e) {
     e.preventDefault()
     
@@ -87,3 +87,27 @@ function initScrollSuave() {
 }
 
 initScrollSuave()
+
+function initAnimacaoScroll() {
+  const sections = document.querySelectorAll('.js-scroll')
+  
+  if (sections.length) {
+    const windowMetade = window.innerHeight * 0.5
+    /**
+    * Função que verifica se cada seção está visíviel na metade da janela e, se estiver,
+    * adiciona a classe 'ativo' à seção.
+    */
+    function animaScroll() {
+      sections.forEach((section) => {
+        const sectionTop = section.getBoundingClientRect().top - windowMetade
+        if (sectionTop < 0) section.classList.add('ativo')
+      })
+    }
+    
+    animaScroll()
+    
+    window.addEventListener('scroll', animaScroll)
+  }
+}
+
+initAnimacaoScroll()

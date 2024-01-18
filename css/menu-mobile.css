@@ -1,0 +1,48 @@
+[data-menu="button"] {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  .suporte [data-menu="button"] {
+    align-items: center;
+    background-color: #222;
+    border-radius: 4px;
+    border: none;
+    color: #FFF;
+    cursor: pointer;
+    display: flex;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: bold;
+    margin: 10px;
+    padding: .5rem 1rem;
+    position: relative;
+    text-transform: uppercase;
+    z-index: 300;
+  }
+  
+  .suporte [data-menu="button"]::before {
+    background-color: #FFF;
+    box-shadow: 0 4px #FFF, 0 -4px #FFF;
+    content: "";
+    display: inline-block;
+    height: 2px;
+    margin-right: 4px;
+    width: 12px;
+  }
+  
+  .suporte [data-menu="list"] {
+    background: #FB5;
+    box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, .2);
+    display: block;
+    padding: 60px 0 20px 0;
+    position: absolute;
+    top: 0;
+    width: 160px;
+    z-index: 200;
+  }
+  
+  .suporte .dropdown-menu {
+    border: none;
+    position: static;
+  }
+}

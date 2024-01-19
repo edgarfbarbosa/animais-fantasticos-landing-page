@@ -16,9 +16,14 @@ export default function outsideClick(element, events, callback) {
   * Previne a adição de diversos Event Listeners no navegador. 
   */
   if (!element.hasAttribute(outside)) {
+    /**
+    * Adiciona os listeners dos eventos ao elemento HTML.
+    * O uso de setTimeout aqui garante que a função handleOutsideClick seja chamada apenas depois que todas as outras
+    * funções na pilha de chamadas tenham terminado de executar. Isso ajuda a prevenir possíveis bloqueios de renderização
+    * e melhora o desempenho geral do aplicativo.
+    */
     events.forEach(userEvent => {
-      // Adiciona os listeners dos eventos ao elemento HTML
-      html.addEventListener(userEvent, handleOutsideClick)
+      setTimeout(() => html.addEventListener(userEvent, handleOutsideClick))
     })
     // Marca o elemento como configurado
     element.setAttribute(outside, '')
@@ -30,7 +35,7 @@ export default function outsideClick(element, events, callback) {
   * @param {MouseEvent} event - O evento do mouse que disparou a chamada. 
   */
   function handleOutsideClick(event) {
-    if (!element.contains(event.target )) {
+    if (!element.contains(event.target)) {
       element.removeAttribute(outside)
       events.forEach(userEvent => {
         html.addEventListener(userEvent, handleOutsideClick)

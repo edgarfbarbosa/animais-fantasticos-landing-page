@@ -20,6 +20,11 @@
     z-index: 300;
   }
   
+  .suporte [data-menu="button"].active::before {
+    transform: rotate(90deg);
+    transition: transform .3s;
+  }
+  
   .suporte [data-menu="button"]::before {
     background-color: #FFF;
     box-shadow: 0 4px #FFF, 0 -4px #FFF;
@@ -33,12 +38,17 @@
   .suporte [data-menu="list"] {
     background: #FB5;
     box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, .2);
-    display: block;
+    display: none;
     padding: 60px 0 20px 0;
     position: absolute;
     top: 0;
     width: 160px;
     z-index: 200;
+  }
+  
+  .suporte [data-menu="list"].active {
+    display: block;
+    animation: show-right .3s forwards;
   }
   
   .suporte .dropdown-menu {

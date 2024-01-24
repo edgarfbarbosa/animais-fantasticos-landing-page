@@ -1,21 +1,44 @@
+/**
+* Função para iniciar a animação de scroll.
+* Ela verifica se há seções na página que precisam ser animadas quando são roladas para a vista.
+* As seções devem ter o atributo `data-anime` definido como `scroll`.
+* A classe `ativo` é adicionada às seções quando elas estão na metade da altura da janela ou mais para baixo.
+* Se uma seção não está mais visível, a classe `ativo` é removida dela.
+*/
 export default function initAnimacaoScroll() {
-  const sections = document.querySelectorAll('[data-anime="scroll"]')
+  // Seleciona todas as seções que devem ser animadas
+  const sections = document.querySelectorAll('[data-anime="scroll"]');
   
-  if (sections.length) {
-    const windowMetade = window.innerHeight * 0.5
+  // Verifica se existem seções para animar
+  if(sections.length) {
+    // Define a altura da metade da janela
+    const windowMetade = window.innerHeight * 0.6;
+    
     /**
-    * Função que verifica se cada seção está visíviel na metade da janela e, se estiver,
-    * adiciona a classe 'ativo' à seção.
+    * Função interna que anima as seções conforme necessário.
+    * É chamada inicialmente e sempre que o evento de rolagem é disparado.
     */
     function animaScroll() {
+      // Percorre todas as seções
       sections.forEach((section) => {
-        const sectionTop = section.getBoundingClientRect().top - windowMetade
-        if (sectionTop < 0) section.classList.add('ativo')
+        // Obtém a posição superior da seção em relação à janela
+        const sectionTop = section.getBoundingClientRect().top;
+        // Verifica se a seção está visível na janela
+        const isSectionVisible = (sectionTop - windowMetade) < 0;
+        // Se a seção está visível, adiciona a classe `ativo`
+        if(isSectionVisible)
+        section.classList.add('ativo');
+        // Se a seção não está mais visível, remove a classe `ativo`
+        else if(section.classList.contains('ativo')) {
+          section.classList.remove('ativo');
+        }
       })
     }
     
-    animaScroll()
+    // Chama a função de animação pela primeira vez
+    animaScroll();
     
-    window.addEventListener('scroll', animaScroll)
+    // Adiciona um listener de evento de rolagem para chamar a função de animação sempre que a página é rolada
+    window.addEventListener('scroll', animaScroll);
   }
 }
